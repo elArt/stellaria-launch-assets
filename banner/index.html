@@ -490,10 +490,17 @@
   <script>
     var clickTag = window.clickTag || "https://stellaria-hcp.dsp";
 
+    document.addEventListener('visibilitychange', () => {
+      const state = document.hidden ? 'paused' : 'running';
+        document.querySelectorAll('.frame, .cta').forEach(el => {
+          el.style.animationPlayState = state;
+        });
+    });
+
     function handleClick() {
       window.open(clickTag, "_blank", "noopener");
     }
-
+    
     (function countUp() {
       var node = document.getElementById("pilot-count");
       var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
